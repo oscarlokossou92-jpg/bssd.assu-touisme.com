@@ -105,9 +105,8 @@
   --fb: 'DM Sans', system-ui, sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--cream);color:var(--charcoal);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-html{overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:var(--fb);background:var(--cream);color:var(--charcoal);-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100%;width:100%}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--fd);line-height:1.15}
 ::-webkit-scrollbar{width:6px}
@@ -342,9 +341,9 @@ details .faq-body{padding:0 1.5rem 1.25rem;color:var(--mink);font-size:.9rem;lin
 <div class="page" id="page-home">
 
   <!-- HERO -->
-  <section style="min-height:95vh;background:linear-gradient(160deg,var(--charcoal) 0%,#3B1F8C 55%,var(--terra-dk) 100%);display:flex;align-items:center;position:relative;overflow:hidden;margin-top:-80px;padding-top:80px">
-    <div style="position:absolute;border-radius:50%;background:rgba(124,58,237,.05);width:600px;height:600px;top:50%;right:-100px;transform:translateY(-50%);animation:float 6s ease-in-out infinite"></div>
-    <div style="position:absolute;border-radius:50%;background:rgba(124,58,237,.04);width:900px;height:900px;top:50%;right:-300px;transform:translateY(-50%);animation:float 8s ease-in-out infinite;animation-delay:.8s"></div>
+  <section style="min-height:95vh;background:linear-gradient(160deg,var(--charcoal) 0%,#3B1F8C 55%,var(--terra-dk) 100%);display:flex;align-items:center;position:relative;overflow:hidden;margin-top:-80px;padding-top:80px;max-width:100%">
+    <div style="position:absolute;border-radius:50%;background:rgba(124,58,237,.05);width:600px;height:600px;top:50%;right:-150px;transform:translateY(-50%);animation:float 6s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;border-radius:50%;background:rgba(124,58,237,.04);width:900px;height:900px;top:50%;right:-350px;transform:translateY(-50%);animation:float 8s ease-in-out infinite;animation-delay:.8s;pointer-events:none"></div>
     <div style="position:absolute;bottom:10%;left:5%;font-size:8rem;opacity:.04;transform:rotate(-15deg);user-select:none">🐾</div>
 
     <div class="wrap" style="position:relative;z-index:2">
@@ -376,8 +375,8 @@ details .faq-body{padding:0 1.5rem 1.25rem;color:var(--mink);font-size:.9rem;lin
         </div>
       </div>
     </div>
-    <div style="position:absolute;bottom:0;left:0;right:0">
-      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="#FAF7F2"/></svg>
+    <div style="position:absolute;bottom:0;left:0;right:0;overflow:hidden;line-height:0">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%"><path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="#FAF7F2"/></svg>
     </div>
   </section>
 
