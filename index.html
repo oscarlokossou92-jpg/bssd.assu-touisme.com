@@ -2806,52 +2806,107 @@
     if (e.key === 'ArrowLeft') { var n=document.querySelectorAll('.dm-slide').length; goSlide((dmCurrentSlide-1+n)%n); }
   });
 
-  // ═══ WIKIMEDIA IMAGE LOADER — bypasses hotlink blocking via API ═══
+  // ═══ IMAGE LOADER ROBUSTE — Wikimedia API + Unsplash fallback ═══
   (function() {
-    var destImages = {
-      'img-ganvie':     'Ganvie1.jpg',
-      'img-pendjari':   'Pendjari_NP_elephant.jpg',
-      'img-ouidah':     'La_porte_du_Non_Retour_-_Ouidah.jpg',
-      'img-abomey':     'Abomey_bas-reliefs.jpg',
-      'img-porto':      'Musee_Honme_Porto_Novo.jpg',
-      'img-natitingou': 'Tata_Somba_1.jpg',
-      'img-pythons':    'Python_sebae.jpg'
+
+    // Wikimedia filename + Unsplash fallback pour chaque destination
+    var destConfig = {
+      'img-ganvie': {
+        wiki: 'Ganvie1.jpg',
+        fallback: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80'
+      },
+      'img-pendjari': {
+        wiki: '%C3%89l%C3%A9phants.JPG',
+        fallback: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&q=80'
+      },
+      'img-ouidah': {
+        wiki: 'La_porte_du_Non_Retour_-_Ouidah.jpg',
+        fallback: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'
+      },
+      'img-abomey': {
+        wiki: 'Entr%C3%A9e_du_Mus%C3%A9e_historique_d%27Abomey_(1).jpg',
+        fallback: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'
+      },
+      'img-porto': {
+        wiki: 'Musee_Honme_Porto_Novo.jpg',
+        fallback: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80'
+      },
+      'img-natitingou': {
+        wiki: 'Tata_Somba_1.jpg',
+        fallback: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'
+      }
     };
 
-    function loadWikiImage(el, filename) {
-      var url = 'https://en.wikipedia.org/w/api.php?action=query&titles=File:' +
-        encodeURIComponent(filename) +
-        '&prop=imageinfo&iiprop=url&iiurlwidth=800&format=json&origin=*';
-      fetch(url)
+    function applyBg(el, url) {
+      el.style.backgroundImage = "url('" + url + "')";
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+
+    function tryImage(url, onSuccess, onFail) {
+      var img = new Image();
+      img.onload = onSuccess;
+      img.onerror = onFail;
+      img.src = url;
+    }
+
+    function loadForElement(el, cfg) {
+      // 1. Try Wikimedia API
+      var apiUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles=File:' +
+        cfg.wiki + '&prop=imageinfo&iiprop=url&iiurlwidth=800&format=json&origin=*';
+
+      fetch(apiUrl)
         .then(function(r){ return r.json(); })
         .then(function(data){
           var pages = data.query.pages;
           var key = Object.keys(pages)[0];
-          var info = pages[key].imageinfo;
+          var info = pages[key] && pages[key].imageinfo;
           if (info && info[0]) {
             var imgUrl = info[0].thumburl || info[0].url;
-            el.style.backgroundImage = "url('" + imgUrl + "')";
-            el.style.backgroundSize = 'cover';
-            el.style.backgroundPosition = 'center';
+            tryImage(imgUrl,
+              function(){ applyBg(el, imgUrl); },
+              function(){ applyBg(el, cfg.fallback); }
+            );
+          } else {
+            applyBg(el, cfg.fallback);
           }
-        }).catch(function(){});
+        })
+        .catch(function(){
+          applyBg(el, cfg.fallback);
+        });
     }
 
     function applyImages() {
-      Object.keys(destImages).forEach(function(cls) {
+      Object.keys(destConfig).forEach(function(cls) {
         document.querySelectorAll('.' + cls).forEach(function(el) {
-          loadWikiImage(el, destImages[cls]);
+          loadForElement(el, destConfig[cls]);
         });
       });
-      // Grand-Popo beach — Unsplash works fine in browser
+
+      // Grand-Popo — Unsplash direct (fonctionne bien dans le navigateur)
       document.querySelectorAll('.img-plage').forEach(function(el) {
-        el.style.backgroundImage = "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80')";
-        el.style.backgroundSize = 'cover';
-        el.style.backgroundPosition = 'center';
+        applyBg(el, 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80');
       });
-      // Pythons temple card
+
+      // Temple des Pythons
       document.querySelectorAll('.dest-ouidah').forEach(function(el) {
-        loadWikiImage(el, 'Python_sebae.jpg');
+        var apiUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles=File:Ouidah03.jpg&prop=imageinfo&iiprop=url&iiurlwidth=800&format=json&origin=*';
+        fetch(apiUrl)
+          .then(function(r){ return r.json(); })
+          .then(function(data){
+            var pages = data.query.pages;
+            var key = Object.keys(pages)[0];
+            var info = pages[key] && pages[key].imageinfo;
+            if (info && info[0]) {
+              var url = info[0].thumburl || info[0].url;
+              tryImage(url, function(){ applyBg(el, url); },
+                function(){ applyBg(el, 'https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=800&q=80'); });
+            } else {
+              applyBg(el, 'https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=800&q=80');
+            }
+          }).catch(function(){
+            applyBg(el, 'https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=800&q=80');
+          });
       });
     }
 
