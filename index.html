@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="referrer" content="no-referrer"/>
 <title>BSSD AGENCY — BENIN HORIZON | Tourisme & Assurances SUNU</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -22,12 +23,22 @@
     --shadow-sm: 0 2px 16px rgba(0,0,0,0.10);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ===== GLOBAL MOBILE SAFETY ===== */
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video, iframe, embed, object { max-width: 100%; height: auto; }
+  table { max-width: 100%; overflow-x: auto; display: block; }
+  pre, code { max-width: 100%; overflow-x: auto; }
+  .sunu-banner-inner, .footer-inner, .contact-inner,
+  .ins-grid, .packages-grid, .dest-grid, .testi-grid { max-width: 100%; }
+
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Outfit', sans-serif;
     background: var(--ivory);
     color: var(--dark);
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    max-width: 100vw;
   }
 
   /* ===== NAVBAR ===== */
@@ -40,7 +51,9 @@
     padding: 0 2rem;
     height: 68px;
     display: flex; align-items: center; justify-content: space-between;
+    gap: .5rem;
     transition: background 0.3s;
+    overflow: hidden;
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
@@ -409,13 +422,13 @@
   .dest-natitingou { background: linear-gradient(135deg, #6b4a1a, #42300f); }
 
   /* Destination image fallbacks using actual photos */
-  .img-ganvie { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ganvie1.jpg/800px-Ganvie1.jpg') center/cover, linear-gradient(135deg, #1a6b8a, #0d3d52); }
-  .img-ouidah { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg') center/cover, linear-gradient(135deg, #7a3b1e, #4a2010); }
-  .img-abomey { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Abomey_bas-reliefs.jpg/800px-Abomey_bas-reliefs.jpg') center/cover, linear-gradient(135deg, #5c3d1a, #3a2510); }
-  .img-pendjari { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pendjari_NP_elephant.jpg/800px-Pendjari_NP_elephant.jpg') center/cover, linear-gradient(135deg, #2d5a1e, #1a3810); }
-  .img-porto { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musee_Honme_Porto_Novo.jpg/800px-Musee_Honme_Porto_Novo.jpg') center/cover, linear-gradient(135deg, #3a1a6b, #220f42); }
-  .img-plage { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80') center/cover, linear-gradient(135deg, #1a5a4a, #0d3530); }
-  .img-natitingou { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Tata_Somba_1.jpg/800px-Tata_Somba_1.jpg') center/cover, linear-gradient(135deg, #6b4a1a, #42300f); }
+  .img-ganvie { background-color: #1a6b8a; }
+  .img-ouidah { background-color: #7a3b1e; }
+  .img-abomey { background-color: #5c3d1a; }
+  .img-pendjari { background-color: #2d5a1e; }
+  .img-porto { background-color: #3a1a6b; }
+  .img-plage { background-color: #1a5a4a; }
+  .img-natitingou { background-color: #6b4a1a; }
 
   /* ===== DEST CARD WITH DIV BACKGROUND ===== */
   .dest-card-inner {
@@ -1055,7 +1068,7 @@
     background: linear-gradient(90deg, var(--blue), var(--blue-light), #64a8f5);
   }
 
-  /* ===== RESPONSIVE ===== */
+  /* ===== RESPONSIVE — TABLETTE ===== */
   @media (max-width: 1024px) {
     .dest-grid { grid-template-columns: repeat(2, 1fr); }
     .dest-card.large { grid-column: span 2; }
@@ -1065,164 +1078,478 @@
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .ins-grid { grid-template-columns: 1fr; }
     .hero-ins-content { grid-template-columns: 1fr; text-align: center; }
-  }
-  @media (max-width: 768px) {
-    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; }
-    .dest-grid { grid-template-columns: 1fr; }
-    .dest-card.large { grid-column: span 1; }
-    .packages-grid { grid-template-columns: 1fr; }
-    .testi-grid { grid-template-columns: 1fr; }
-    .contact-inner { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; }
-    .subscribe-steps { flex-direction: column; align-items: center; }
-    .subscribe-steps::before { display: none; }
-    .hero-ins-content { grid-template-columns: 1fr; }
+    .stats-bar { padding: 1.5rem 2rem; }
+    .packages-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* ===== DESTINATION MODAL ===== */
-  .dest-modal-overlay {
+  /* ===== RESPONSIVE — MOBILE ===== */
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 0 1rem; height: 60px; }
+    .nav-links { display: none; }
+    .nav-logo-text { font-size: 0.85rem; }
+    .nav-toggle button { padding: 6px 12px; font-size: 0.75rem; }
+
+    /* Hero tourisme */
+    .hero-content { padding: 1rem 1rem 4rem; }
+    .hero-title { font-size: clamp(2rem, 9vw, 3rem); }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-buttons { flex-direction: column; align-items: center; gap: .7rem; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 300px; text-align: center; }
+
+    /* Stats */
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 1rem; gap: .5rem; }
+    .stat-number { font-size: 1.5rem; }
+    .stat-label { font-size: 0.65rem; }
+
+    /* Section headers */
+    .section-header { padding: 3rem 1rem 2rem; }
+    .section-title { font-size: clamp(1.4rem, 6vw, 2rem); }
+
+    /* Destinations */
+    .destinations { padding: 0 1rem 3rem; }
+    .dest-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .dest-card.large { grid-column: span 1; }
+    .dest-card.tall { grid-row: span 1; }
+    .dest-card.large .dest-img { height: 240px; }
+    .dest-card.tall .dest-img { min-height: 220px; height: 220px; }
+    .dest-img { height: 220px; }
+    .dest-bg { min-height: 220px !important; height: 220px !important; }
+    .dest-card.tall .dest-bg { min-height: 220px !important; }
+    .dest-name { font-size: 1.2rem; }
+    .dest-card.large .dest-name { font-size: 1.3rem; }
+    .dest-card.tall .dest-name { font-size: 1.3rem; }
+
+    /* Packages */
+    .packages-grid { grid-template-columns: 1fr; }
+    .pkg-price { font-size: 1.5rem; }
+
+    /* Why us */
+    .why-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 1rem; }
+    .why-visual { display: none; }
+
+    /* Testimonials */
+    .testi-grid { grid-template-columns: 1fr; }
+
+    /* Insurance hero */
+    .hero-ins { padding: 5rem 1rem 3rem; }
+    .hero-ins-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .hero-ins-title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    .ins-logo-big { max-width: 300px; margin: 0 auto; padding: 1.5rem !important; }
+    .ins-logo-big img { max-width: 160px !important; }
+
+    /* Insurance products */
+    .ins-grid { grid-template-columns: 1fr; gap: 1rem; padding: 0 1rem; }
+    .ins-products { padding: 3rem 1rem; }
+
+    /* Subscribe steps */
+    .subscribe-steps { flex-direction: column; align-items: center; gap: 1.5rem; }
+    .subscribe-steps::before { display: none; }
+    .sub-step { max-width: 280px; }
+
+    /* SUNU banner */
+    .sunu-banner { padding: 2.5rem 1rem; }
+    .sunu-banner-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .sunu-contact { flex-direction: column; gap: .8rem; align-items: center; }
+
+    /* Sunu banner inner */
+    .sunu-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
+    .sunu-contact-items { flex-direction: column; align-items: center; gap: .7rem; }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-section { padding: 4rem 1rem; }
+    .contact-form { padding: 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 0; }
+    footer { padding: 3rem 1.5rem 1.5rem; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: .5rem; }
+    .footer-brand p { max-width: 100%; }
+
+    /* WhatsApp */
+    .whatsapp-btn { bottom: 1.2rem; right: 1.2rem; width: 50px; height: 50px; font-size: 1.3rem; }
+
+    /* Packages section padding */
+    .packages { padding: 0 1rem 3rem; }
+    .pkg-card { margin: 0; }
+
+    /* Testimonials section */
+    .testimonials { padding: 0 1rem 3rem; }
+  }
+
+  /* ===== RESPONSIVE — TRÈS PETIT MOBILE (< 400px) ===== */
+  @media (max-width: 400px) {
+    .nav-logo-text { font-size: 0.75rem; }
+    .nav-toggle button { padding: 5px 9px; font-size: 0.7rem; }
+    .hero-title { font-size: 1.9rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-number { font-size: 1.3rem; }
+    .section-title { font-size: 1.35rem; }
+    .dest-bg, .dest-img { height: 200px !important; min-height: 200px !important; }
+    .contact-form { padding: 1rem; }
+    .dm-body { padding: 1.5rem 1rem 4rem; }
+    .dm-hero-content { padding: 1.5rem 1rem 1.5rem; }
+    .dm-title { font-size: 1.5rem !important; }
+  }
+
+
+  /* ══════════════════════════════════════════════
+     DESTINATION MODAL — FULL-SCREEN IMMERSIVE
+  ══════════════════════════════════════════════ */
+  .dm-overlay {
     display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.3s ease;
-  }
-  .dest-modal-overlay.open { display: flex; }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  .dest-modal {
-    background: var(--ivory);
-    border-radius: 24px;
-    max-width: 820px;
-    width: 100%;
-    max-height: 90vh;
+    position: fixed; inset: 0; z-index: 3000;
+    background: #0d0a06;
     overflow-y: auto;
-    position: relative;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-    animation: slideUp 0.35s cubic-bezier(.22,.68,0,1.2);
+    animation: dmFadeIn .35s ease;
   }
-  @keyframes slideUp { from { opacity:0; transform: translateY(50px) scale(0.97); } to { opacity:1; transform: none; } }
-  .modal-hero {
-    width: 100%; height: 280px;
-    background-size: cover !important;
-    background-position: center !important;
-    border-radius: 24px 24px 0 0;
-    position: relative;
+  .dm-overlay.open { display: block; }
+  @keyframes dmFadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* ── Back button ── */
+  .dm-back {
+    position: fixed; top: 1.2rem; left: 1.4rem; z-index: 3100;
+    display: flex; align-items: center; gap: .5rem;
+    padding: .55rem 1.2rem .55rem .9rem;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50px;
+    color: white; font-size: .85rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .2s;
+    font-family: 'Outfit', sans-serif;
   }
-  .modal-hero-overlay {
+  .dm-back:hover { background: rgba(196,98,42,.7); transform: translateX(-3px); }
+  .dm-back svg { width: 16px; height: 16px; }
+
+  /* ── Hero cinematic ── */
+  .dm-hero {
+    height: 70vh; min-height: 420px;
+    position: relative; overflow: hidden;
+  }
+  .dm-hero-slides { position: absolute; inset: 0; }
+  .dm-slide {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8));
-    border-radius: 24px 24px 0 0;
-    display: flex; align-items: flex-end; padding: 2rem;
+    background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.2s ease;
   }
-  .modal-hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 900;
-    color: white; line-height: 1.2;
+  .dm-slide.active { opacity: 1; }
+  .dm-hero-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13,10,6,0.25) 0%,
+      rgba(13,10,6,0.05) 40%,
+      rgba(13,10,6,0.9) 100%
+    );
   }
-  .modal-hero-region {
-    font-size: 0.8rem; color: var(--gold);
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 0.4rem; font-weight: 600;
+  .dm-hero-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 3rem 4rem 2.5rem;
   }
-  .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    width: 40px; height: 40px;
-    background: rgba(0,0,0,0.5);
-    border: none; border-radius: 50%;
-    color: white; font-size: 1.2rem;
-    cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s;
-    z-index: 10;
-  }
-  .modal-close:hover { background: rgba(196,98,42,0.8); }
-  .modal-body { padding: 2rem 2.5rem 2.5rem; }
-  .modal-badge {
-    display: inline-block;
-    padding: 4px 14px;
-    background: rgba(196,98,42,0.12);
-    border: 1px solid rgba(196,98,42,0.3);
+  .dm-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .35rem 1rem;
     border-radius: 20px;
-    color: var(--terracotta);
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(232,168,48,.2);
+    border: 1px solid rgba(232,168,48,.45);
+    color: #E8A830;
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
     margin-bottom: 1rem;
   }
-  .modal-description {
-    font-size: 1rem; color: var(--warm-gray);
-    line-height: 1.8; margin-bottom: 1.5rem;
+  .dm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900; color: white; line-height: 1.1;
+    margin-bottom: .5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,.4);
   }
-  .modal-highlights {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1rem; margin-bottom: 1.5rem;
+  .dm-region {
+    font-size: .9rem; color: rgba(255,255,255,.65);
+    letter-spacing: .06em;
   }
-  .modal-highlight {
-    background: white;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    display: flex; gap: 0.8rem; align-items: flex-start;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  /* slide dots */
+  .dm-dots {
+    position: absolute; bottom: 1.2rem; right: 4rem;
+    display: flex; gap: .4rem;
   }
-  .modal-highlight-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .modal-highlight-title { font-weight: 700; font-size: 0.85rem; color: var(--dark); margin-bottom: 0.2rem; }
-  .modal-highlight-text { font-size: 0.78rem; color: var(--warm-gray); line-height: 1.5; }
-  .modal-infos {
-    display: flex; gap: 1.5rem; flex-wrap: wrap;
-    background: white; border-radius: 14px;
-    padding: 1.2rem 1.5rem; margin-bottom: 1.5rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  .dm-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    cursor: pointer; transition: all .3s; border: none;
   }
-  .modal-info-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
-  .modal-info-label { color: var(--warm-gray); }
-  .modal-info-value { font-weight: 600; color: var(--dark); }
-  .modal-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .modal-btn-primary {
-    padding: 12px 28px;
-    background: linear-gradient(135deg, var(--terracotta), var(--gold));
-    color: white; border: none;
-    border-radius: 50px; font-family: 'Outfit', sans-serif;
-    font-size: 0.9rem; font-weight: 700;
-    cursor: pointer; text-decoration: none;
-    transition: all 0.3s; box-shadow: 0 4px 16px rgba(196,98,42,0.35);
-  }
-  .modal-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,98,42,0.45); }
-  .modal-btn-secondary {
-    padding: 12px 28px;
-    background: transparent;
-    color: var(--dark); border: 2px solid rgba(0,0,0,0.15);
-    border-radius: 50px; font-family: 'Outfit', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    cursor: pointer; text-decoration: none;
-    transition: all 0.3s;
-  }
-  .modal-btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); }
+  .dm-dot.active { background: #E8A830; transform: scale(1.3); }
 
-  .modal-hl-icon {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--terracotta);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-    background: rgba(196,98,42,0.1);
-    border-radius: 8px;
-    padding: 6px 8px;
-    min-width: 60px;
+  /* ── Body layout ── */
+  .dm-body {
+    max-width: 1100px; margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    display: grid; grid-template-columns: 1fr 340px;
+    gap: 3rem; align-items: start;
+  }
+  @media (max-width: 900px) {
+    .dm-body { grid-template-columns: 1fr; padding: 2rem 1rem 5rem; gap: 2rem; }
+    .dm-hero-content { padding: 2rem 1.2rem 2rem; }
+    .dm-dots { right: 1.2rem; }
+    .dm-hero { height: 55vmax; min-height: 300px; }
+    .dm-title { font-size: clamp(1.4rem, 5vw, 2.2rem) !important; }
+    .dm-highlights { grid-template-columns: 1fr; }
+    .dm-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .dm-tab { white-space: nowrap; padding: .6rem 1rem; font-size: .8rem; }
+    .dm-gallery { grid-template-columns: repeat(2, 1fr); }
+    .dm-gallery-item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/9; }
+    .dm-back { top: .8rem; left: .8rem; padding: .45rem .9rem .45rem .7rem; font-size: .8rem; }
+    .dm-info-card { padding: 1.2rem; }
+    .dm-weather { gap: .3rem; }
+    .dm-weather-month { min-width: 34px; padding: .4rem .2rem; }
+    .dm-weather-label { font-size: .55rem; }
+    .dm-weather-temp { font-size: .62rem; }
+    .dm-infos { gap: .5rem; flex-direction: column; }
+  }
+
+  /* ── Tabs ── */
+  .dm-tabs {
+    display: flex; gap: 0;
+    border-bottom: 2px solid rgba(255,255,255,.08);
+    margin-bottom: 2.5rem;
+  }
+  .dm-tab {
+    padding: .7rem 1.4rem;
+    background: none; border: none;
+    color: rgba(255,255,255,.4);
+    font-family: 'Outfit', sans-serif;
+    font-size: .85rem; font-weight: 600;
+    cursor: pointer; letter-spacing: .04em;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; transition: all .2s;
+  }
+  .dm-tab:hover { color: rgba(255,255,255,.75); }
+  .dm-tab.active {
+    color: #E8A830;
+    border-bottom-color: #E8A830;
+  }
+  .dm-panel { display: none; }
+  .dm-panel.active { display: block; }
+
+  /* ── Description ── */
+  .dm-description {
+    font-size: 1rem; color: rgba(255,255,255,.72);
+    line-height: 1.85; margin-bottom: 2rem;
+  }
+
+  /* ── Highlights grid ── */
+  .dm-highlights {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  @media (max-width: 600px) { .dm-highlights { grid-template-columns: 1fr; } }
+  .dm-hl {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 16px; padding: 1.2rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: background .2s, border-color .2s;
+  }
+  .dm-hl:hover {
+    background: rgba(232,168,48,.07);
+    border-color: rgba(232,168,48,.2);
+  }
+  .dm-hl-icon {
+    font-size: 1.8rem; flex-shrink: 0; margin-top: .1rem;
+  }
+  .dm-hl-title {
+    font-weight: 700; color: white; font-size: .9rem; margin-bottom: .25rem;
+  }
+  .dm-hl-text { font-size: .8rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+  /* ── Reviews ── */
+  .dm-reviews { display: flex; flex-direction: column; gap: 1rem; }
+  .dm-review {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px; padding: 1.2rem 1.4rem;
+  }
+  .dm-review-stars { color: #E8A830; font-size: 1rem; margin-bottom: .5rem; }
+  .dm-review-text {
+    font-size: .88rem; color: rgba(255,255,255,.65);
+    line-height: 1.6; font-style: italic; margin-bottom: .75rem;
+  }
+  .dm-review-author {
+    font-size: .78rem; color: rgba(255,255,255,.4); font-weight: 600;
+  }
+
+  /* ── Tips ── */
+  .dm-tips { display: flex; flex-direction: column; gap: .8rem; }
+  .dm-tip {
+    display: flex; gap: .9rem; align-items: flex-start;
+    background: rgba(255,255,255,.04);
+    border-left: 3px solid #E8A830;
+    border-radius: 0 12px 12px 0;
+    padding: .9rem 1.1rem;
+  }
+  .dm-tip-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .dm-tip-title { font-weight: 700; color: white; font-size: .85rem; margin-bottom: .2rem; }
+  .dm-tip-text { font-size: .8rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+  /* ── Sidebar card ── */
+  .dm-sidebar {}
+  .dm-info-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px; padding: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .dm-info-card h4 {
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: #E8A830; margin-bottom: 1.2rem;
+  }
+  .dm-info-row {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: .65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: .85rem;
+  }
+  .dm-info-row:last-child { border-bottom: none; }
+  .dm-info-label { color: rgba(255,255,255,.45); }
+  .dm-info-value { color: white; font-weight: 600; text-align: right; max-width: 55%; }
+
+  /* weather mini */
+  .dm-weather {
+    display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem;
+  }
+  .dm-weather-month {
+    flex: 1; min-width: 40px;
+    background: rgba(255,255,255,.04);
+    border-radius: 8px; padding: .5rem .3rem;
     text-align: center;
-    line-height: 1.3;
-    margin-top: 2px;
   }
-  @media (max-width: 600px) {
-    .modal-highlights { grid-template-columns: 1fr; }
-    .modal-body { padding: 1.5rem; }
-    .modal-hero-title { font-size: 1.4rem; }
+  .dm-weather-label { font-size: .6rem; color: rgba(255,255,255,.35); margin-bottom: .25rem; }
+  .dm-weather-icon { font-size: 1rem; }
+  .dm-weather-temp { font-size: .7rem; color: rgba(255,255,255,.6); margin-top: .15rem; }
+
+  /* rating stars big */
+  .dm-rating-big {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.06);
+    margin-bottom: 1rem;
   }
+  .dm-rating-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 700; color: #E8A830;
+    line-height: 1;
+  }
+  .dm-rating-stars { color: #E8A830; font-size: 1.1rem; }
+  .dm-rating-count { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: .2rem; }
+
+  /* CTA buttons */
+  .dm-cta-group { display: flex; flex-direction: column; gap: .75rem; }
+  .dm-cta-primary {
+    display: block; padding: 1rem;
+    background: linear-gradient(135deg, #C4622A, #E8A830);
+    color: white; text-align: center;
+    border-radius: 50px; text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: .95rem;
+    transition: all .3s;
+    box-shadow: 0 4px 20px rgba(196,98,42,.35);
+  }
+  .dm-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,98,42,.5); }
+  .dm-cta-secondary {
+    display: block; padding: .9rem;
+    background: transparent;
+    color: white; text-align: center;
+    border: 1.5px solid rgba(255,255,255,.25);
+    border-radius: 50px; text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600; font-size: .9rem;
+    transition: all .3s;
+  }
+  .dm-cta-secondary:hover { border-color: #E8A830; color: #E8A830; }
+  .dm-whatsapp {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .9rem;
+    background: #25D366;
+    color: white; border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: .9rem;
+    transition: all .3s;
+  }
+  .dm-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+  /* photo strip (panel 2) */
+  .dm-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .7rem;
+  }
+  .dm-gallery-item {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background-size: cover; background-position: center;
+    cursor: zoom-in; overflow: hidden;
+    transition: transform .3s;
+  }
+  .dm-gallery-item:first-child {
+    grid-column: span 2; grid-row: span 2;
+    aspect-ratio: unset;
+  }
+  .dm-gallery-item:hover { transform: scale(1.03); }
+
+  /* map placeholder */
+  .dm-map-placeholder {
+    border-radius: 16px; overflow: hidden;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    height: 340px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; color: rgba(255,255,255,.5);
+    text-align: center; padding: 2rem;
+    font-size: .9rem;
+  }
+  .dm-map-placeholder .map-icon { font-size: 3rem; }
+  .dm-map-btn {
+    display: inline-block; padding: .7rem 1.5rem;
+    background: rgba(232,168,48,.15);
+    border: 1px solid rgba(232,168,48,.35);
+    color: #E8A830; border-radius: 50px;
+    text-decoration: none; font-size: .85rem; font-weight: 600;
+    transition: all .2s;
+  }
+  .dm-map-btn:hover { background: rgba(232,168,48,.25); }
+
+
+  /* ===== IMAGE FALLBACK GRADIENTS ===== */
+  .img-ganvie { background-color: #1a6b8a; }
+  .img-pendjari { background-color: #2d5a1e; }
+  .img-ouidah { background-color: #7a3b1e; }
+  .img-abomey { background-color: #5c3d1a; }
+  .img-porto { background-color: #3a1a6b; }
+  .img-plage { background-color: #1a5a4a; }
+  .img-natitingou { background-color: #6b4a1a; }
+  .dest-ouidah   { background-color: #5a2d10; }
+
+  /* Force minimum height on all dest-bg */
+  .dest-bg {
+    min-height: 280px;
+    height: 280px;
+    display: block;
+    width: 100%;
+  }
+  .dest-card.large .dest-bg { height: 340px; min-height: 340px; }
+  .dest-card.tall .dest-bg  { height: 100%; min-height: 560px; }
+  @media (max-width: 768px) {
+    .dest-bg { height: 220px !important; min-height: 220px !important; }
+    .dest-card.large .dest-bg { height: 220px !important; min-height: 220px !important; }
+    .dest-card.tall .dest-bg  { height: 220px !important; min-height: 220px !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -1308,8 +1635,8 @@
       <div class="dest-grid">
 
         <!-- Ganvié -->
-        <div class="dest-card large" onclick="openDestModal('ganvie')" style="cursor:pointer;">
-          <div class="dest-bg img-ganvie"></div>
+        <div class="dest-card large" onclick="openDM('ganvie')" style="cursor:pointer;">
+          <div class="dest-bg img-ganvie" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-badge">UNESCO</div>
           <div class="dest-info">
@@ -1320,8 +1647,8 @@
         </div>
 
         <!-- Pendjari -->
-        <div class="dest-card tall" onclick="openDestModal('pendjari')" style="cursor:pointer;">
-          <div class="dest-bg img-pendjari"></div>
+        <div class="dest-card tall" onclick="openDM('pendjari')" style="cursor:pointer;">
+          <div class="dest-bg img-pendjari" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-badge">Parc National</div>
           <div class="dest-info">
@@ -1332,8 +1659,8 @@
         </div>
 
         <!-- Ouidah -->
-        <div class="dest-card" onclick="openDestModal('ouidah')" style="cursor:pointer;">
-          <div class="dest-bg img-ouidah"></div>
+        <div class="dest-card" onclick="openDM('ouidah')" style="cursor:pointer;">
+          <div class="dest-bg img-ouidah" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-badge">Histoire</div>
           <div class="dest-info">
@@ -1344,8 +1671,8 @@
         </div>
 
         <!-- Abomey -->
-        <div class="dest-card" onclick="openDestModal('abomey')" style="cursor:pointer;">
-          <div class="dest-bg img-abomey"></div>
+        <div class="dest-card" onclick="openDM('abomey')" style="cursor:pointer;">
+          <div class="dest-bg img-abomey" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-badge">Patrimoine Mondial</div>
           <div class="dest-info">
@@ -1356,8 +1683,8 @@
         </div>
 
         <!-- Porto-Novo -->
-        <div class="dest-card" onclick="openDestModal('portonovo')" style="cursor:pointer;">
-          <div class="dest-bg img-porto"></div>
+        <div class="dest-card" onclick="openDM('portonovo')" style="cursor:pointer;">
+          <div class="dest-bg img-porto" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-info">
             <div class="dest-region">Porto-Novo • Ouémé</div>
@@ -1367,8 +1694,8 @@
         </div>
 
         <!-- Grand Popo -->
-        <div class="dest-card" onclick="openDestModal('grandpopo')" style="cursor:pointer;">
-          <div class="dest-bg img-plage"></div>
+        <div class="dest-card" onclick="openDM('grandpopo')" style="cursor:pointer;">
+          <div class="dest-bg img-plage" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-info">
             <div class="dest-region">Grand-Popo • Mono</div>
@@ -1378,8 +1705,8 @@
         </div>
 
         <!-- Temple des Pythons / Natitingou -->
-        <div class="dest-card large" onclick="openDestModal('natitingou')" style="cursor:pointer;">
-          <div class="dest-bg img-natitingou"></div>
+        <div class="dest-card large" onclick="openDM('natitingou')" style="cursor:pointer;">
+          <div class="dest-bg img-natitingou" style="background-size:cover;background-position:center;"></div>
           <div class="dest-overlay"></div>
           <div class="dest-info">
             <div class="dest-region">Natitingou • Atacora</div>
@@ -1389,8 +1716,8 @@
         </div>
 
         <!-- Temple Pythons -->
-        <div class="dest-card" onclick="openDestModal('pythons')" style="cursor:pointer;">
-          <div class="dest-bg dest-ouidah" style="background: linear-gradient(135deg, #5a2d10, #8a4522);"></div>
+        <div class="dest-card" onclick="openDM('pythons')" style="cursor:pointer;">
+          <div class="dest-bg dest-ouidah" ></div>
           <div class="dest-overlay"></div>
           <div class="dest-badge">Mystique</div>
           <div class="dest-info">
@@ -1954,222 +2281,684 @@
     observer.observe(el);
   });
 
-  // ===== DESTINATION MODAL DATA =====
-  const destinations = {
+
+  // ═══════════════════════════════════════════
+  //  DESTINATION MODAL — DATA + LOGIC
+  // ═══════════════════════════════════════════
+  var DEST_DATA = {
     ganvie: {
-      title: "Ganvie — La Venise de l'Afrique",
-      region: "Lac Nokoue • Departement Atlantique",
-      badge: "UNESCO | Village Lacustre",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ganvie1.jpg/800px-Ganvie1.jpg",
-      description: "Ganvie est l'un des villages lacustres les plus fascinants d'Afrique. Fonde au XVIIe siecle par les Tofinu pour echapper aux razzias des esclavagistes, ce village de pecheurs est entierement construit sur pilotis au coeur du lac Nokoe. Avec ses 20 000 a 30 000 habitants, c'est l'une des plus grandes cites lacustres d'Afrique. On y navigue en pirogue dans des ruelles d'eau, entre maisons sur echasses, ecole flottante, marche flottant et temples Vodoun. Une experience hors du temps.",
+      title: "Ganvié — La Venise de l'Afrique",
+      region: "Lac Nokoué • Département Atlantique",
+      badge: "🌊 Village Lacustre UNESCO",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ganvie1.jpg/800px-Ganvie1.jpg",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Ganvié est l'un des villages lacustres les plus fascinants d'Afrique. Fondé au XVIIe siècle par les Tofinu pour échapper aux razzias des esclavagistes, ce village de pêcheurs est entièrement construit sur pilotis au cœur du lac Nokoué. Avec ses 20 000 à 30 000 habitants, c'est l'une des plus grandes cités lacustres d'Afrique. On y navigue en pirogue dans des ruelles d'eau, entre maisons sur échasses, école flottante et marché flottant. Au coucher du soleil, le reflet doré du lac transforme le paysage en tableau vivant — une expérience hors du temps impossible à oublier.",
       highlights: [
-        { icon: "Balade en pirogue", title: "Balade en pirogue", text: "Navigation unique dans les ruelles d'eau entre les maisons sur pilotis." },
-        { icon: "Marche flottant", title: "Marche flottant", text: "Un marche anime ou les commercants echangent depuis leurs pirogues." },
-        { icon: "Peche traditionnelle", title: "Peche traditionnelle", text: "Techniques ancestrales de peche avec les acadjas, pieges a poissons en bambou." },
-        { icon: "Coucher de soleil", title: "Coucher de soleil", text: "Vue spectaculaire sur le lac au crepuscule — une photo a couper le souffle." }
+        { icon: "🛶", title: "Balade en pirogue", text: "Navigation unique dans les ruelles d'eau entre les maisons sur pilotis. Incontournable !" },
+        { icon: "🛒", title: "Marché flottant", text: "Un marché animé où les commerçants échangent depuis leurs pirogues chaque matin." },
+        { icon: "🎣", title: "Pêche traditionnelle", text: "Techniques ancestrales de pêche avec les acadjas, pièges à poissons en bambou." },
+        { icon: "🌅", title: "Coucher de soleil", text: "Vue spectaculaire sur le lac au crépuscule — une photo absolument époustouflante." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "15 km (30 min)" },
-        { label: "Duree conseillee", value: "Demi-journee a journee" },
-        { label: "Prix indicatif", value: "A partir de 5 000 FCFA" },
-        { label: "Meilleure periode", value: "Toute l'annee" }
+        { l: "📍 Distance de Cotonou", v: "15 km — 30 min" },
+        { l: "⏱️ Durée conseillée", v: "Demi-journée ou journée" },
+        { l: "💰 Prix indicatif", v: "À partir de 5 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Familles, couples, groupes" },
+        { l: "🌡️ Température moy.", v: "27–32 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"🌤️", t:"30°" }, { m:"Déc", i:"☀️", t:"29°" },
+        { m:"Jan", i:"☀️", t:"28°" }, { m:"Fév", i:"☀️", t:"30°" },
+        { m:"Mar", i:"🌤️", t:"32°" }, { m:"Avr", i:"🌦️", t:"31°" }
+      ],
+      rating: 4.8, reviews_count: "124 avis",
+      reviews: [
+        { stars: 5, text: "Une expérience magique et unique ! La balade en pirogue au coucher du soleil est quelque chose que je n'oublierai jamais de ma vie.", author: "Marie-Anne D. • France" },
+        { stars: 5, text: "Ganvié m'a coupé le souffle. Le guide de BSSD Agency était excellent, très bien informé et passionné. Je recommande fortement !", author: "Kofi A. • Ghana" },
+        { stars: 4, text: "Magnifique destination, les photos ne rendent pas justice à la réalité. Prévoir au moins une demi-journée.", author: "Fatou S. • Sénégal" }
+      ],
+      tips: [
+        { icon: "⏰", title: "Meilleur moment de la journée", text: "Partez tôt le matin (7h-9h) pour voir le marché flottant animé, ou en fin d'après-midi pour le coucher de soleil." },
+        { icon: "👗", title: "Tenue recommandée", text: "Vêtements légers et chapeau indispensables. Emportez de la crème solaire — on est sur l'eau toute la journée." },
+        { icon: "📷", title: "Photo tips", text: "Le « golden hour » au coucher du soleil offre une lumière exceptionnelle sur les reflets du lac. Ne ratez pas ça !" },
+        { icon: "💊", title: "Santé & prévention", text: "Prenez vos médicaments contre le paludisme et utilisez un répulsif anti-moustiques, surtout en soirée." }
+      ],
+      mapText: "Ganvié, Lac Nokoué, Bénin — À 15 km de Cotonou via Abomey-Calavi.",
+      mapLink: "https://maps.google.com/?q=Ganvie+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ganvie1.jpg/800px-Ganvie1.jpg",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80"
       ]
     },
     pendjari: {
       title: "Parc National de la Pendjari",
-      region: "Nord-Benin • Departement Atacora",
-      badge: "Parc National | Biosphere UNESCO",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pendjari_NP_elephant.jpg/800px-Pendjari_NP_elephant.jpg",
-      description: "Le Parc National de la Pendjari est l'un des derniers grands sanctuaires de faune sauvage d'Afrique de l'Ouest. Classe Reserve de Biosphere par l'UNESCO, il couvre 4 800 km2 de savanes, forets galeries et zones humides. On y croise lions, elephants, hippopotames, buffles, guepards, phacocheres, babouins et plus de 300 especes d'oiseaux. Le parc est gere en partenariat avec African Parks depuis 2017, ce qui a considerablement ameliore la protection de la faune.",
+      region: "Nord-Bénin • Département Atacora",
+      badge: "🦁 Réserve de Biosphère UNESCO",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pendjari_NP_elephant.jpg/800px-Pendjari_NP_elephant.jpg",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Le Parc National de la Pendjari est le joyau sauvage du Bénin et l'un des derniers grands sanctuaires de faune d'Afrique de l'Ouest. Classé Réserve de Biosphère par l'UNESCO, il s'étend sur 4 800 km² de savanes arborées, forêts galeries et zones humides spectaculaires. Depuis 2017, géré par African Parks, la faune y est en pleine renaissance : lions, éléphants, hippos, buffles, guépards et plus de 300 espèces d'oiseaux. Un safari béninois authentique, sans les foules des grandes réserves est-africaines.",
       highlights: [
-        { icon: "Elephants", title: "Elephants et grands mammiferes", text: "L'une des plus grandes populations d'elephants d'Afrique de l'Ouest." },
-        { icon: "Lions", title: "Lions et predateurs", text: "Population de lions en croissance grace aux efforts de conservation." },
-        { icon: "Hippopotames", title: "Hippopotames", text: "Nombreux hippos dans les mares et rivieres du parc." },
-        { icon: "Oiseaux", title: "+300 especes d'oiseaux", text: "Paradis pour les ornithologues : aigles pecheurs, ibis, herons..." }
+        { icon: "🐘", title: "Éléphants d'Afrique", text: "L'une des plus grandes populations d'éléphants d'Afrique de l'Ouest — des troupeaux impressionnants." },
+        { icon: "🦁", title: "Lions en liberté", text: "Population de lions en pleine croissance grâce aux efforts de conservation depuis 2017." },
+        { icon: "🦛", title: "Hippopotames", text: "Observez les hippos dans les mares et rivières du parc — spectacle garanti au lever du soleil." },
+        { icon: "🐦", title: "+300 espèces d'oiseaux", text: "Paradis absolu pour les ornithologues : aigles, pêcheurs, ibis, hérons, grues couronnées..." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "630 km (7-8h de route)" },
-        { label: "Duree conseillee", value: "2 a 3 jours minimum" },
-        { label: "Prix indicatif", value: "A partir de 50 000 FCFA" },
-        { label: "Meilleure periode", value: "Decembre a Mars (saison seche)" }
+        { l: "📍 Distance de Cotonou", v: "630 km — 7 à 8h" },
+        { l: "⏱️ Durée conseillée", v: "2 à 3 jours minimum" },
+        { l: "💰 Prix indicatif", v: "À partir de 50 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Amateurs de safari & nature" },
+        { l: "🌡️ Température moy.", v: "25–38 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"☀️", t:"32°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"26°" }, { m:"Fév", i:"☀️", t:"30°" },
+        { m:"Mar", i:"🌤️", t:"35°" }, { m:"Avr", i:"🌥️", t:"36°" }
+      ],
+      rating: 4.9, reviews_count: "87 avis",
+      reviews: [
+        { stars: 5, text: "Le meilleur safari que j'ai fait en Afrique de l'Ouest ! Éléphants à 10 mètres, lion observé deux fois. Incroyable organisation par BSSD Agency.", author: "Pierre L. • Belgique" },
+        { stars: 5, text: "Une nature sauvage et préservée à couper le souffle. Le lodge de brousse était parfait. Expérience authentique loin des foules.", author: "Aminata K. • Mali" },
+        { stars: 4, text: "Magnifique ! Un peu long depuis Cotonou mais ça vaut vraiment le détour. Prévoir au minimum 2 nuits pour profiter.", author: "Jean-Marc T. • France" }
+      ],
+      tips: [
+        { icon: "📅", title: "Meilleure saison", text: "Décembre à mars (saison sèche). Les animaux se regroupent autour des mares, les pistes sont praticables." },
+        { icon: "🚙", title: "Véhicule indispensable", text: "Un 4x4 est obligatoire. BSSD Agency organise des véhicules adaptés avec chauffeur-guide expérimenté." },
+        { icon: "🌅", title: "Sorties à l'aube", text: "Les sorties safari à 5h30 sont les plus productives — la faune est active au lever du soleil." },
+        { icon: "🦟", title: "Prévention santé", text: "Zone à risque paludisme : prophylaxie antipaludéenne obligatoire et répulsifs puissants." }
+      ],
+      mapText: "Parc National de la Pendjari, Tanguiéta, Bénin.",
+      mapLink: "https://maps.google.com/?q=Parc+National+Pendjari+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pendjari_NP_elephant.jpg/800px-Pendjari_NP_elephant.jpg",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80"
       ]
     },
     ouidah: {
       title: "Ouidah — La Porte du Non-Retour",
-      region: "Ouidah • Departement Atlantique",
-      badge: "Histoire | Memoire | Vodoun",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg",
-      description: "Ouidah est l'une des villes les plus chargees d'histoire du Benin. Ancien centre nevralgique de la traite transatlantique des esclaves, elle conserve des temoignages poignants de cette periode sombre. La Route de l'Esclave, classee par l'UNESCO, mene a la Porte du Non-Retour sur la plage — memorial emouvant ou des millions d'Africains quitterent leur continent. Ouidah est aussi la capitale mondiale du Vodoun avec son celebre Temple des Pythons Sacres.",
+      region: "Ouidah • Département Atlantique",
+      badge: "⛓️ Mémoire & Histoire | Vodoun",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80"
+      ],
+      desc: "Ouidah est l'une des villes les plus chargées d'histoire du Bénin. Ancien centre névralgique de la traite transatlantique des esclaves, elle conserve des témoignages poignants de cette période sombre. La Route de l'Esclave, classée par l'UNESCO, mène à travers les 4 km jusqu'à la Porte du Non-Retour sur la plage — mémorial émouvant où des millions d'Africains quittèrent leur continent pour toujours. Ouidah est aussi la capitale mondiale du Vodoun, avec son célèbre Temple des Pythons Sacrés, ses temples et ses cérémonies mystérieuses.",
       highlights: [
-        { icon: "Porte du Non-Retour", title: "Porte du Non-Retour", text: "Monument emblematique sur la plage, symbole universel de la traite negriere." },
-        { icon: "Temple des Pythons", title: "Temple des Pythons", text: "Des dizaines de pythons royaux sacres vivent en liberte dans ce temple Vodoun." },
-        { icon: "Fort Portugais", title: "Fort Portugais", text: "Ancien fort colonial devenu musee retracant l'histoire de la traite atlantique." },
-        { icon: "Festival Vodoun", title: "Festival Vodoun", text: "Chaque 10 janvier, Ouidah accueille le plus grand festival Vodoun d'Afrique." }
+        { icon: "🚪", title: "Porte du Non-Retour", text: "Monument emblématique sur la plage — symbole universel de la mémoire de la traite négrière." },
+        { icon: "🐍", title: "Temple des Pythons", text: "Des dizaines de pythons royaux sacrés vivent en liberté dans ce temple Vodoun unique au monde." },
+        { icon: "🏛️", title: "Fort Portugais", text: "Musée retraçant 3 siècles d'histoire de la traite atlantique, installé dans un fort colonial." },
+        { icon: "🎭", title: "Festival Vodoun", text: "Chaque 10 janvier, Ouidah accueille le plus grand festival Vodoun d'Afrique — couleurs et rituels." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "40 km (45 min)" },
-        { label: "Duree conseillee", value: "Journee complete" },
-        { label: "Prix indicatif", value: "A partir de 8 000 FCFA" },
-        { label: "Meilleure periode", value: "Toute l'annee (festival en janvier)" }
+        { l: "📍 Distance de Cotonou", v: "40 km — 45 min" },
+        { l: "⏱️ Durée conseillée", v: "Journée complète" },
+        { l: "💰 Prix indicatif", v: "À partir de 8 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Histoire, culture, spiritualité" },
+        { l: "🌡️ Température moy.", v: "27–31 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"🌤️", t:"29°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"27°" }, { m:"Fév", i:"☀️", t:"29°" },
+        { m:"Mar", i:"🌤️", t:"31°" }, { m:"Avr", i:"🌦️", t:"30°" }
+      ],
+      rating: 4.7, reviews_count: "203 avis",
+      reviews: [
+        { stars: 5, text: "Un lieu qui vous touche profondément. La Route de l'Esclave et la Porte du Non-Retour m'ont ému aux larmes. Un pèlerinage nécessaire.", author: "Claudette M. • Martinique" },
+        { stars: 5, text: "Le Temple des Pythons est une expérience unique et frissonnante ! Le guide était passionné et très bien informé sur le Vodoun.", author: "Thomas B. • Suisse" },
+        { stars: 4, text: "Ouidah vaut vraiment le détour. Riche en histoire et en culture. Combinez avec Grand-Popo pour une journée parfaite.", author: "Saliou D. • Sénégal" }
+      ],
+      tips: [
+        { icon: "🕊️", title: "Respect et sensibilité", text: "La Route de l'Esclave est un lieu de mémoire — adoptez une attitude respectueuse et recueillie." },
+        { icon: "📅", title: "Festival Vodoun (10 janvier)", text: "Si vous êtes au Bénin en janvier, ne manquez pas le festival Vodoun — une expérience culturelle unique." },
+        { icon: "🐍", title: "Temple des Pythons", text: "Les pythons sont sacrés et inoffensifs. Suivez les instructions des gardiens et profitez de l'expérience !" },
+        { icon: "🌊", title: "Plage de la Porte", text: "La plage de la Porte du Non-Retour est belle mais attention aux courants — ne pas se baigner." }
+      ],
+      mapText: "Ouidah, Département Atlantique, Bénin — À 40 km à l'ouest de Cotonou.",
+      mapLink: "https://maps.google.com/?q=Ouidah+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80"
       ]
     },
     abomey: {
       title: "Palais Royaux d'Abomey",
-      region: "Abomey • Departement du Zou",
-      badge: "Patrimoine Mondial UNESCO",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Abomey_bas-reliefs.jpg/800px-Abomey_bas-reliefs.jpg",
-      description: "Les Palais Royaux d'Abomey sont inscrits au Patrimoine mondial de l'UNESCO depuis 1985. Ancienne capitale du puissant Royaume du Dahomey (XVIIe-XIXe siecles), Abomey abrite un ensemble palatial exceptionnel de 12 palais royaux construits par 12 rois successifs. Les celebres bas-reliefs en argile illustrent les exploits guerriers et les symboles de chaque roi. Le Musee Historique d'Abomey conserve des trones royaux, des tentures d'applique et des objets rituels d'une richesse incomparable.",
+      region: "Abomey • Département du Zou",
+      badge: "🏛️ Patrimoine Mondial UNESCO",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Abomey_bas-reliefs.jpg/800px-Abomey_bas-reliefs.jpg",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=800&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Les Palais Royaux d'Abomey sont inscrits au Patrimoine mondial de l'UNESCO depuis 1985. Ancienne capitale du puissant Royaume du Dahomey (XVIIe–XIXe siècles), Abomey abrite un ensemble palatial exceptionnel de 12 palais royaux construits par 12 rois successifs sur plus de 44 hectares. Les célèbres bas-reliefs en argile illustrent les exploits guerriers et symboles de chaque souverain. Le Musée Historique d'Abomey conserve des trônes royaux, des tentures d'appliqué, des costumes royaux et des objets rituels d'une richesse incomparable.",
       highlights: [
-        { icon: "12 Palais Royaux", title: "12 Palais Royaux", text: "Un ensemble palatial unique construit sur 3 siecles par les rois du Dahomey." },
-        { icon: "Bas-reliefs", title: "Bas-reliefs extraordinaires", text: "Frises d'argile illustrant les symboles et victoires de chaque souverain." },
-        { icon: "Trones royaux", title: "Trones royaux", text: "Dont le legendaire trone du Roi Glele, sculpte dans du bois." },
-        { icon: "Tissu d'applique", title: "Tissu d'applique", text: "Art textile unique du Dahomey, reconnu pour sa finesse et ses recits visuels." }
+        { icon: "👑", title: "12 Palais Royaux", text: "Ensemble palatial unique sur 44 hectares, construit sur 3 siècles par les rois du Dahomey." },
+        { icon: "🎨", title: "Bas-reliefs extraordinaires", text: "Frises d'argile polychrome illustrant les victoires et symboles de chaque souverain." },
+        { icon: "🏺", title: "Musée Historique", text: "Collections royales uniques : trônes, tenues de guerre, objets rituels et tentures d'appliqué." },
+        { icon: "🧵", title: "Tissu d'Appliqué", text: "Art textile unique du Dahomey reconnu pour sa finesse — les artisans travaillent encore aujourd'hui." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "145 km (2h30 de route)" },
-        { label: "Duree conseillee", value: "Demi-journee a journee complete" },
-        { label: "Prix indicatif", value: "A partir de 5 000 FCFA (entree musee)" },
-        { label: "Meilleure periode", value: "Novembre a Mars" }
+        { l: "📍 Distance de Cotonou", v: "145 km — 2h30" },
+        { l: "⏱️ Durée conseillée", v: "Journée complète" },
+        { l: "💰 Prix indicatif", v: "5 000 FCFA (entrée musée)" },
+        { l: "👥 Idéal pour", v: "Histoire, architecture, art" },
+        { l: "🌡️ Température moy.", v: "26–34 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"☀️", t:"30°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"27°" }, { m:"Fév", i:"☀️", t:"30°" },
+        { m:"Mar", i:"🌤️", t:"33°" }, { m:"Avr", i:"🌦️", t:"32°" }
+      ],
+      rating: 4.8, reviews_count: "156 avis",
+      reviews: [
+        { stars: 5, text: "Les palais royaux d'Abomey sont absolument fascinants. La richesse de l'histoire du Dahomey est impressionnante. Guide passionné et très compétent.", author: "Nathalie F. • Canada" },
+        { stars: 5, text: "Les bas-reliefs sont magnifiques ! On sent la puissance et la grandeur du Royaume du Dahomey. Une visite incontournable au Bénin.", author: "Kwame A. • Ghana" },
+        { stars: 4, text: "Site remarquable et bien entretenu. Prévoyez une journée entière pour tout voir et comprendre. Le guide était excellent.", author: "Isabelle C. • Belgique" }
+      ],
+      tips: [
+        { icon: "🕗", title: "Horaires d'ouverture", text: "Le musée est ouvert tous les jours de 9h à 17h. Évitez le midi (chaleur et fermeture partielle)." },
+        { icon: "👟", title: "Chaussures confortables", text: "Le site fait 44 hectares — portez des chaussures confortables pour marcher entre les palais." },
+        { icon: "🛍️", title: "Artisanat local", text: "Profitez pour acheter des tentures d'appliqué directement aux artisans à la sortie du musée." },
+        { icon: "🚗", title: "Combinaison idéale", text: "Combinez Abomey avec Bohicon (ville voisine) et la visite des marchés traditionnels alentours." }
+      ],
+      mapText: "Palais Royaux d'Abomey, Abomey, Département du Zou, Bénin.",
+      mapLink: "https://maps.google.com/?q=Palais+Royaux+Abomey+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Abomey_bas-reliefs.jpg/800px-Abomey_bas-reliefs.jpg",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80"
       ]
     },
     portonovo: {
-      title: "Porto-Novo, la Capitale Meconnue",
-      region: "Porto-Novo • Departement Oueme",
-      badge: "Capitale Historique | Culture Yoruba",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musee_Honme_Porto_Novo.jpg/800px-Musee_Honme_Porto_Novo.jpg",
-      description: "Porto-Novo est la capitale officielle du Benin, souvent eclipsee par la dynamique Cotonou mais regorgeant de tresors culturels. Fondee au XVIe siecle, cette ville au riche passe yoruba et colonial mele architectures afro-bresilienne et francaise, marches animes et musees exceptionnels. Le Musee Ethnographique da Silva, installe dans une magnifique maison afro-bresilienne, retrace l'histoire des Agudas — descendants d'esclaves bresiliens revenus en Afrique.",
+      title: "Porto-Novo, Capitale Méconnue",
+      region: "Porto-Novo • Département Ouémé",
+      badge: "🏙️ Capitale | Culture Yoruba",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musee_Honme_Porto_Novo.jpg/800px-Musee_Honme_Porto_Novo.jpg",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Porto-Novo est la capitale officielle du Bénin, souvent éclipsée par la dynamique Cotonou, mais regorgeant de trésors culturels et architecturaux. Fondée au XVIe siècle, cette ville au riche passé yoruba et colonial mêle harmonieusement architectures afro-brésilienne et française, marchés animés et musées d'exception. Le Musée Ethnographique da Silva, installé dans une magnifique maison afro-brésilienne, retrace l'histoire fascinante des Agudas — descendants d'esclaves brésiliens revenus en Afrique.",
       highlights: [
-        { icon: "Architecture", title: "Architecture Afro-Bresilienne", text: "Maisons colorees aux facades ornementees, temoins du retour des Agudas." },
-        { icon: "Musee", title: "Musee Ethnographique da Silva", text: "Superbe demeure bresilienne convertie en musee de la culture Yoruba." },
-        { icon: "Palais Royal", title: "Palais Royal Honme", text: "Residence ancestrale du roi de Porto-Novo, musee vivant de la royaute Yoruba." },
-        { icon: "Marche Ouando", title: "Marche Ouando", text: "Le grand marche de Porto-Novo, anime et colore, coeur economique de la ville." }
+        { icon: "🏠", title: "Architecture Afro-Brésilienne", text: "Maisons colorées aux façades ornementées, legs unique du retour des Agudas au XIXe siècle." },
+        { icon: "🏺", title: "Musée da Silva", text: "Superbe demeure brésilienne convertie en musée de la culture yoruba et des Agudas." },
+        { icon: "👑", title: "Palais Royal Honmè", text: "Résidence ancestrale du roi de Porto-Novo, musée vivant de la royauté yoruba." },
+        { icon: "🛒", title: "Marché Ouando", text: "Le grand marché animé et coloré de Porto-Novo, cœur économique et culturel de la ville." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "30 km (40 min)" },
-        { label: "Duree conseillee", value: "Demi-journee a journee complete" },
-        { label: "Prix indicatif", value: "A partir de 3 000 FCFA" },
-        { label: "Meilleure periode", value: "Toute l'annee" }
+        { l: "📍 Distance de Cotonou", v: "30 km — 40 min" },
+        { l: "⏱️ Durée conseillée", v: "Demi-journée à journée" },
+        { l: "💰 Prix indicatif", v: "À partir de 3 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Culture, histoire coloniale" },
+        { l: "🌡️ Température moy.", v: "26–32 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"🌤️", t:"29°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"27°" }, { m:"Fév", i:"☀️", t:"29°" },
+        { m:"Mar", i:"🌤️", t:"31°" }, { m:"Avr", i:"🌦️", t:"30°" }
+      ],
+      rating: 4.5, reviews_count: "98 avis",
+      reviews: [
+        { stars: 5, text: "Porto-Novo est une ville pleine de charme ! L'architecture afro-brésilienne est unique en Afrique. Le musée da Silva est une merveille.", author: "Rodrigo M. • Brésil" },
+        { stars: 4, text: "Très agréable à visiter, beaucoup moins touristique que Cotonou. Les habitants sont chaleureux et accueillants. À ne pas manquer.", author: "Awa D. • Côte d'Ivoire" },
+        { stars: 4, text: "Ville paisible avec une richesse culturelle insoupçonnée. Le Palais Royal est fascinant. Guide de BSSD Agency au top !", author: "Emmanuel N. • Nigeria" }
+      ],
+      tips: [
+        { icon: "🕗", title: "Meilleur jour : jeudi & samedi", text: "Le marché Ouando est particulièrement animé le jeudi et samedi matin — vivez l'effervescence locale !" },
+        { icon: "🚢", title: "Traversée en pirogue", text: "Possibilité de rejoindre Porto-Novo depuis Cotonou par pirogue sur la lagune — expérience unique !" },
+        { icon: "📸", title: "Architecture à photographier", text: "La rue des maisons afro-brésiliennes near le centre ville est un trésor pour les photographes." },
+        { icon: "🍽️", title: "Gastronomie locale", text: "Goûtez aux spécialités yoruba dans les restaurants du marché — cuisine authentique et savoureuse." }
+      ],
+      mapText: "Porto-Novo, Capitale du Bénin, Département Ouémé.",
+      mapLink: "https://maps.google.com/?q=Porto-Novo+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Musee_Honme_Porto_Novo.jpg/800px-Musee_Honme_Porto_Novo.jpg",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80"
       ]
     },
     grandpopo: {
       title: "Plages Sauvages de Grand-Popo",
-      region: "Grand-Popo • Departement Mono",
-      badge: "Plage et Nature | Detente",
-      bgUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-      description: "Grand-Popo est la perle balneaire du Benin. Situe a l'extremite ouest du pays, ce village de pecheurs offre des kilometres de plages sauvages et preservees bordeees de cocotiers sur le Golfe de Guinee. Loin du tourisme de masse, Grand-Popo est un havre de paix ideal pour se ressourcer. On y pratique la peche traditionnelle avec les filets, on observe les piroguiers au lever du soleil et on deguste du poisson frais au bord de l'eau. L'embouchure de la Bouche du Roy est un ecosysteme unique.",
+      region: "Grand-Popo • Département Mono",
+      badge: "🏖️ Plage & Détente | Nature",
+      slides: [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Grand-Popo est la perle balnéaire du Bénin. Situé à l'extrémité ouest du pays à la frontière du Togo, ce village de pêcheurs offre des kilomètres de plages sauvages et préservées bordées de cocotiers sur le Golfe de Guinée. Loin du tourisme de masse, Grand-Popo est un havre de paix idéal pour se ressourcer. Les couchers de soleil y sont parmi les plus beaux du Bénin, et la Bouche du Roy — estuaire du fleuve Mono — constitue un écosystème unique d'une beauté rare, classé site Ramsar.",
       highlights: [
-        { icon: "Plages", title: "Plages Immaculees", text: "Des kilometres de sable fin preserve, loin de toute urbanisation." },
-        { icon: "Peche", title: "Peche Traditionnelle", text: "Partez en mer avec les pecheurs locaux a l'aube — une experience authentique." },
-        { icon: "Couchers de soleil", title: "Couchers de Soleil", text: "Les plus beaux couchers de soleil du Benin sur l'ocean Atlantique." },
-        { icon: "Bouche du Roy", title: "Bouche du Roy", text: "Lagune et estuaire du fleuve Mono — paradis ornithologique unique." }
+        { icon: "🌊", title: "Plages Immaculées", text: "Des kilomètres de sable fin entièrement naturel, cocotiers et pêcheurs locaux — zéro tourisme de masse." },
+        { icon: "🎣", title: "Pêche Traditionnelle", text: "Partez en mer avant l'aube avec les pêcheurs locaux — une immersion authentique dans leur quotidien." },
+        { icon: "🌅", title: "Couchers de Soleil", text: "Les plus beaux couchers de soleil sur l'Atlantique au Bénin — des couleurs spectaculaires." },
+        { icon: "🦅", title: "Bouche du Roy (Ramsar)", text: "Lagune et estuaire du fleuve Mono — paradis ornithologique et paysage naturel exceptionnel." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "110 km (1h45 de route)" },
-        { label: "Duree conseillee", value: "Weekend ou sejour de 2-3 jours" },
-        { label: "Prix indicatif", value: "A partir de 25 000 FCFA" },
-        { label: "Meilleure periode", value: "Novembre a Avril" }
+        { l: "📍 Distance de Cotonou", v: "110 km — 1h45" },
+        { l: "⏱️ Durée conseillée", v: "Weekend ou 2–3 jours" },
+        { l: "💰 Prix indicatif", v: "À partir de 25 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Détente, couples, familles" },
+        { l: "🌡️ Température moy.", v: "27–31 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"☀️", t:"29°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"27°" }, { m:"Fév", i:"☀️", t:"29°" },
+        { m:"Mar", i:"🌤️", t:"30°" }, { m:"Avr", i:"🌦️", t:"29°" }
+      ],
+      rating: 4.6, reviews_count: "112 avis",
+      reviews: [
+        { stars: 5, text: "Un paradis préservé et authentique ! Les plages sont vierges, les habitants adorables, les couchers de soleil à couper le souffle. On reviendra !", author: "Sophie & Marc L. • Lyon, France" },
+        { stars: 5, text: "La pêche au lever du soleil avec les locaux était une expérience inoubliable. BSSD Agency a tout organisé parfaitement. Merci !", author: "Alinta M. • Australie" },
+        { stars: 4, text: "Excellent séjour de détente. Les plages sont magnifiques et vides ! Parfait pour fuir Cotonou le weekend.", author: "Rodrigo A. • São Paulo" }
+      ],
+      tips: [
+        { icon: "🌊", title: "Attention aux courants", text: "L'océan y est fort — baignez-vous uniquement dans les zones indiquées par les locaux." },
+        { icon: "🚤", title: "Excursion Bouche du Roy", text: "Réservez une pirogue pour explorer la Bouche du Roy au lever du soleil — paysage absolument magique." },
+        { icon: "🍤", title: "Fruits de mer frais", text: "Dégustez crevettes, poissons et langoustes pêchés le matin même dans les restaurants de plage." },
+        { icon: "📅", title: "Éviter la grande saison des pluies", text: "Période optimale : novembre à avril. Évitez juin–septembre (mer agitée, averses fréquentes)." }
+      ],
+      mapText: "Grand-Popo, Département du Mono, Bénin — Frontière Togo.",
+      mapLink: "https://maps.google.com/?q=Grand-Popo+Benin",
+      gallery: [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80"
       ]
     },
     natitingou: {
       title: "Tata Somba & Natitingou",
-      region: "Natitingou • Departement Atacora",
-      badge: "Architecture UNESCO | Nature",
-      bgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Tata_Somba_1.jpg/800px-Tata_Somba_1.jpg",
-      description: "Natitingou, capitale du departement de l'Atacora, est le point de depart ideal pour decouvrir le nord du Benin. La region est celebre pour les mysterieuses cases Tata Somba des Batammariba — une architecture defensive ancestrale en terre, construite comme de veritables petits chateaux-forts a deux etages. Classees au Patrimoine mondial de l'UNESCO, ces demeures uniques racontent la resistance d'un peuple fier. La region offre aussi des paysages montagneux grandioses de la chaine de l'Atacora.",
+      region: "Natitingou • Département Atacora",
+      badge: "🏔️ Architecture UNESCO | Montagnes",
+      slides: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Tata_Somba_1.jpg/800px-Tata_Somba_1.jpg",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=800&q=80",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80"
+      ],
+      desc: "Natitingou, capitale du département de l'Atacora, est le cœur culturel du nord du Bénin. La région est célèbre pour les mystérieuses cases Tata Somba des Batammariba — une architecture défensive ancestrale en terre rouge, construite comme de véritables châteaux-forts à deux étages avec terrasses et greniers. Classées au Patrimoine mondial de l'UNESCO, ces demeures uniques racontent la résistance farouche d'un peuple contre les esclavagistes. La chaîne de l'Atacora offre par ailleurs des paysages montagneux grandioses avec falaises, cascades et forêts tropicales.",
       highlights: [
-        { icon: "Tata Somba", title: "Tata Somba (UNESCO)", text: "Cases fortifiees des Batammariba, veritables chateaux-forts en terre battue." },
-        { icon: "Atacora", title: "Chaine de l'Atacora", text: "Randonnees dans les collines — paysages epoustouflants de falaises et forets." },
-        { icon: "Cascades", title: "Cascades de Kota", text: "Chutes d'eau spectaculaires accessibles en randonnee, ideales pour se baigner." },
-        { icon: "Culture", title: "Culture Batammariba", text: "Rencontres authentiques avec les habitants, gardiens d'une culture millenaire." }
+        { icon: "🏰", title: "Tata Somba (UNESCO)", text: "Cases-châteaux des Batammariba en terre rouge — architecture défensive ancestrale unique au monde." },
+        { icon: "🏔️", title: "Chaîne de l'Atacora", text: "Randonnées dans les montagnes — falaises majestueuses, forêts et paysages à couper le souffle." },
+        { icon: "💧", title: "Cascades de Kota", text: "Chutes d'eau spectaculaires en pleine nature, accessibles à pied — idéal pour un bain rafraîchissant." },
+        { icon: "🤝", title: "Culture Batammariba", text: "Rencontres authentiques avec les habitants, gardiens d'une culture et d'une philosophie millénaires." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "530 km (6h de route)" },
-        { label: "Duree conseillee", value: "2 a 3 jours" },
-        { label: "Prix indicatif", value: "A partir de 40 000 FCFA" },
-        { label: "Meilleure periode", value: "Novembre a Fevrier" }
+        { l: "📍 Distance de Cotonou", v: "530 km — 6h de route" },
+        { l: "⏱️ Durée conseillée", v: "2 à 3 jours" },
+        { l: "💰 Prix indicatif", v: "À partir de 40 000 FCFA" },
+        { l: "👥 Idéal pour", v: "Randonnée, ethno-tourisme" },
+        { l: "🌡️ Température moy.", v: "20–32 °C (plus frais)" }
+      ],
+      weather: [
+        { m:"Nov", i:"☀️", t:"28°" }, { m:"Déc", i:"☀️", t:"24°" },
+        { m:"Jan", i:"☀️", t:"22°" }, { m:"Fév", i:"☀️", t:"26°" },
+        { m:"Mar", i:"🌤️", t:"30°" }, { m:"Avr", i:"🌥️", t:"31°" }
+      ],
+      rating: 4.7, reviews_count: "64 avis",
+      reviews: [
+        { stars: 5, text: "Les Tata Somba sont une merveille architecturale ! On se croirait dans un autre monde. Les paysages de l'Atacora sont époustouflants. Visite inoubliable.", author: "Claire T. • Toulouse, France" },
+        { stars: 5, text: "Le nord du Bénin est une révélation. Natitingou est une ville accueillante et la culture Batammariba est fascinante. Guide BSSD Agency excellent.", author: "Ibrahim D. • Mali" },
+        { stars: 4, text: "Superbe aventure ! Les cascades de Kota sont magnifiques. Le trajet depuis Cotonou est long mais ça vaut amplement le déplacement.", author: "Peter K. • Allemagne" }
+      ],
+      tips: [
+        { icon: "🚗", title: "Route longue, prévoir 2 jours", text: "Avec 530 km depuis Cotonou, prévoyez de dormir à Parakou à mi-chemin pour arriver reposé." },
+        { icon: "👔", title: "Tenue respectueuse", text: "En visitant les villages Batammariba, adoptez une tenue sobre et demandez avant de photographier." },
+        { icon: "🥾", title: "Chaussures de randonnée", text: "Pour les cascades de Kota et les sentiers de l'Atacora, des chaussures de trek sont indispensables." },
+        { icon: "🌙", title: "Nuit dans les étoiles", text: "Natitingou offre des nuits très fraîches et un ciel étoilé exceptionnel — loin de la pollution lumineuse." }
+      ],
+      mapText: "Natitingou, Département Atacora, Nord Bénin — Proche du Parc de la Pendjari.",
+      mapLink: "https://maps.google.com/?q=Natitingou+Benin",
+      gallery: [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Tata_Somba_1.jpg/800px-Tata_Somba_1.jpg",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80",
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80"
       ]
     },
     pythons: {
-      title: "Temple des Pythons Sacres",
-      region: "Ouidah • Departement Atlantique",
-      badge: "Mystique | Spiritualite Vodoun",
-      bgUrl: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=800&q=80",
-      description: "Le Temple des Pythons de Ouidah est un lieu absolument unique au monde. Situe en plein coeur de la ville, ce temple Vodoun abrite des dizaines de pythons royaux vivant en totale liberte. Dans la tradition Vodoun beninoise, le python est un animal sacre, symbole de chance, de protection et de prosperite. Les pretres Vodoun gardiens du temple permettent aux visiteurs de s'approcher — et meme de laisser un python s'enrouler autour de leur cou pour les plus courageux !",
+      title: "Temple des Pythons Sacrés",
+      region: "Ouidah • Département Atlantique",
+      badge: "🐍 Mystique | Spiritualité Vodoun",
+      slides: [
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800&q=80"
+      ],
+      desc: "Le Temple des Pythons de Ouidah est un lieu absolument unique sur la planète. Situé en plein cœur de la ville, face à la magnifique Basilique de l'Immaculée Conception, ce temple Vodoun abrite des dizaines de pythons royaux vivant en totale liberté dans son enceinte. Dans la tradition Vodoun béninoise, le python est un animal sacré — messager des dieux, symbole de chance, de protection et de prospérité. Les prêtres Vodoun gardiens du temple accueillent les visiteurs et permettent une interaction respectueuse avec les serpents, pour les plus courageux.",
       highlights: [
-        { icon: "Pythons sacres", title: "Pythons royaux sacres", text: "Des dizaines de pythons vivent en liberte dans l'enceinte du temple Vodoun." },
-        { icon: "Ceremonie", title: "Ceremonie Vodoun", text: "Possibilite d'assister a des rituels de divination et d'offrandes avec les pretres." },
-        { icon: "Photos", title: "Photos avec les pythons", text: "Avec l'accord des gardiens, posez avec un python pour une photo unique !" },
-        { icon: "Basilique", title: "Basilique de Ouidah", text: "Le temple fait face a la magnifique Basilique — symbole de syncretisme." }
+        { icon: "🐍", title: "Pythons royaux sacrés", text: "Des dizaines de pythons vivent librement dans le temple — inoffensifs et traités comme des divinités." },
+        { icon: "🙏", title: "Rituels Vodoun", text: "Possibilité d'assister à des cérémonies de divination et d'offrandes avec les prêtres du temple." },
+        { icon: "📸", title: "Photo avec les pythons", text: "Avec l'accord des gardiens, laissez un python s'enrouler autour de vous — un souvenir unique !" },
+        { icon: "⛪", title: "Basilique en face", text: "Le temple fait face à la Basilique — symbole fort du syncrétisme religieux unique à Ouidah." }
       ],
       infos: [
-        { label: "Distance de Cotonou", value: "40 km (45 min)" },
-        { label: "Duree conseillee", value: "1 a 2 heures" },
-        { label: "Prix indicatif", value: "Donation libre (env. 2 000 FCFA)" },
-        { label: "Meilleure periode", value: "Toute l'annee" }
+        { l: "📍 Distance de Cotonou", v: "40 km — 45 min" },
+        { l: "⏱️ Durée conseillée", v: "1 à 2 heures" },
+        { l: "💰 Prix indicatif", v: "Donation libre (~2 000 FCFA)" },
+        { l: "👥 Idéal pour", v: "Aventuriers, curieux culturels" },
+        { l: "🌡️ Température moy.", v: "27–31 °C" }
+      ],
+      weather: [
+        { m:"Nov", i:"🌤️", t:"29°" }, { m:"Déc", i:"☀️", t:"28°" },
+        { m:"Jan", i:"☀️", t:"27°" }, { m:"Fév", i:"☀️", t:"29°" },
+        { m:"Mar", i:"🌤️", t:"31°" }, { m:"Avr", i:"🌦️", t:"30°" }
+      ],
+      rating: 4.6, reviews_count: "178 avis",
+      reviews: [
+        { stars: 5, text: "Une expérience totalement hors du commun ! J'avais peur au début mais les gardiens sont rassurants. Le python autour du cou : je ne l'oublierai jamais !", author: "Lucas M. • Portugal" },
+        { stars: 4, text: "Endroit fascinant et mystérieux. Le contraste avec la Basilique juste en face est saisissant — un symbole fort du Bénin. Incontournable à Ouidah.", author: "Nadia B. • France" },
+        { stars: 5, text: "Le guide nous a tout expliqué sur la signification des pythons dans le Vodoun. Passionnant culturellement et visuellement impressionnant.", author: "Aïssatou K. • Guinée" }
+      ],
+      tips: [
+        { icon: "😌", title: "Ne pas avoir peur", text: "Les pythons royaux sont inoffensifs pour les humains et habitués aux visiteurs. Les gardiens sont là pour vous guider." },
+        { icon: "📷", title: "Permission avant de filmer", text: "Demandez toujours la permission aux gardiens avant de filmer ou photographier les rituels du temple." },
+        { icon: "🧥", title: "Tenue correcte exigée", text: "Lieu de culte actif : couvrez épaules et genoux par respect pour les pratiquants Vodoun." },
+        { icon: "🗺️", title: "Combiner avec Ouidah", text: "À 300m de la Basilique et sur la Route de l'Esclave — combinez avec la Porte du Non-Retour." }
+      ],
+      mapText: "Temple des Pythons Sacrés, Centre-ville de Ouidah, Bénin.",
+      mapLink: "https://maps.google.com/?q=Temple+des+Pythons+Ouidah+Benin",
+      gallery: [
+        "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/La_porte_du_Non_Retour_-_Ouidah.jpg/800px-La_porte_du_Non_Retour_-_Ouidah.jpg",
+        "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=80",
+        "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80"
       ]
     }
   };
 
-  function openDestModal(key) {
-    var d = destinations[key];
+  var dmSlideTimer = null;
+  var dmCurrentSlide = 0;
+
+  function openDM(key) {
+    var d = DEST_DATA[key];
     if (!d) return;
-    document.getElementById('modalHero').style.background = "url('" + d.bgUrl + "') center/cover";
-    document.getElementById('modalRegion').textContent = d.region;
-    document.getElementById('modalTitle').textContent = d.title;
-    document.getElementById('modalBadge').textContent = d.badge;
-    document.getElementById('modalDescription').textContent = d.description;
-    
-    document.getElementById('modalHighlights').innerHTML = d.highlights.map(function(h) {
-      return '<div class="modal-highlight"><div class="modal-hl-icon">' + h.icon + '</div><div><div class="modal-highlight-title">' + h.title + '</div><div class="modal-highlight-text">' + h.text + '</div></div></div>';
+
+    // Reset tabs
+    document.querySelectorAll('.dm-tab').forEach(function(t,i){ t.classList.toggle('active', i===0); });
+    document.querySelectorAll('.dm-panel').forEach(function(p,i){ p.classList.toggle('active', i===0); });
+
+    // Hero slides
+    var slidesEl = document.getElementById('dmSlides');
+    slidesEl.innerHTML = '';
+    d.slides.forEach(function(url, i) {
+      var div = document.createElement('div');
+      div.className = 'dm-slide' + (i===0 ? ' active' : '');
+      div.style.backgroundImage = "url('"+url+"')";
+      slidesEl.appendChild(div);
+    });
+
+    // Dots
+    var dotsEl = document.getElementById('dmDots');
+    dotsEl.innerHTML = '';
+    d.slides.forEach(function(_, i) {
+      var b = document.createElement('button');
+      b.className = 'dm-dot' + (i===0 ? ' active' : '');
+      b.onclick = function(){ goSlide(i); };
+      dotsEl.appendChild(b);
+    });
+
+    // Hero text
+    document.getElementById('dmBadge').textContent = d.badge;
+    document.getElementById('dmTitle').textContent = d.title;
+    document.getElementById('dmRegion').textContent = d.region;
+
+    // Description
+    document.getElementById('dmDesc').textContent = d.desc;
+
+    // Highlights
+    document.getElementById('dmHighlights').innerHTML = d.highlights.map(function(h) {
+      return '<div class="dm-hl"><div class="dm-hl-icon">'+h.icon+'</div><div><div class="dm-hl-title">'+h.title+'</div><div class="dm-hl-text">'+h.text+'</div></div></div>';
     }).join('');
-    
-    document.getElementById('modalInfos').innerHTML = d.infos.map(function(i) {
-      return '<div class="modal-info-item"><span class="modal-info-label">' + i.label + ' :</span><span class="modal-info-value">' + i.value + '</span></div>';
+
+    // Info rows sidebar
+    document.getElementById('dmInfoRows').innerHTML = d.infos.map(function(r) {
+      return '<div class="dm-info-row"><span class="dm-info-label">'+r.l+'</span><span class="dm-info-value">'+r.v+'</span></div>';
     }).join('');
-    
-    document.getElementById('destModalOverlay').classList.add('open');
+
+    // Weather
+    document.getElementById('dmWeather').innerHTML = d.weather.map(function(w) {
+      return '<div class="dm-weather-month"><div class="dm-weather-label">'+w.m+'</div><div class="dm-weather-icon">'+w.i+'</div><div class="dm-weather-temp">'+w.t+'</div></div>';
+    }).join('');
+
+    // Rating
+    var stars = Math.round(d.rating);
+    document.getElementById('dmRatingNum').textContent = d.rating.toFixed(1);
+    document.getElementById('dmRatingStars').textContent = '★'.repeat(stars) + '☆'.repeat(5-stars);
+    document.getElementById('dmRatingCount').textContent = d.reviews_count;
+
+    // Reviews
+    document.getElementById('dmReviews').innerHTML = d.reviews.map(function(r) {
+      return '<div class="dm-review"><div class="dm-review-stars">'+'★'.repeat(r.stars)+'</div><p class="dm-review-text">"'+r.text+'"</p><div class="dm-review-author">— '+r.author+'</div></div>';
+    }).join('');
+
+    // Tips
+    document.getElementById('dmTips').innerHTML = d.tips.map(function(t) {
+      return '<div class="dm-tip"><div class="dm-tip-icon">'+t.icon+'</div><div><div class="dm-tip-title">'+t.title+'</div><div class="dm-tip-text">'+t.text+'</div></div></div>';
+    }).join('');
+
+    // Gallery
+    document.getElementById('dmGallery').innerHTML = d.gallery.map(function(url) {
+      return '<div class="dm-gallery-item" style="background-image:url(\''+url+'\')" onclick="window.open(\''+url+'\',\'_blank\')"></div>';
+    }).join('');
+
+    // Map
+    document.getElementById('dmMapText').textContent = d.mapText;
+    document.getElementById('dmMapLink').href = d.mapLink;
+
+    // Open
+    var overlay = document.getElementById('destModal');
+    overlay.classList.add('open');
+    overlay.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+
+    // Slideshow
+    dmCurrentSlide = 0;
+    if (dmSlideTimer) clearInterval(dmSlideTimer);
+    if (d.slides.length > 1) {
+      dmSlideTimer = setInterval(function(){ goSlide((dmCurrentSlide+1) % d.slides.length); }, 4500);
+    }
   }
 
-  function closeDestModal() {
-    document.getElementById('destModalOverlay').classList.remove('open');
+  function goSlide(n) {
+    dmCurrentSlide = n;
+    document.querySelectorAll('.dm-slide').forEach(function(s,i){ s.classList.toggle('active', i===n); });
+    document.querySelectorAll('.dm-dot').forEach(function(d,i){ d.classList.toggle('active', i===n); });
+  }
+
+  function closeDM() {
+    document.getElementById('destModal').classList.remove('open');
     document.body.style.overflow = '';
+    if (dmSlideTimer) { clearInterval(dmSlideTimer); dmSlideTimer = null; }
   }
 
-  function closeDestModalOnOverlay(e) {
-    if (e.target === document.getElementById('destModalOverlay')) closeDestModal();
+  function switchTab(name, btn) {
+    document.querySelectorAll('.dm-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.dm-panel').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('panel-'+name).classList.add('active');
   }
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeDestModal();
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && document.getElementById('destModal').classList.contains('open')) closeDM();
+    if (e.key === 'ArrowRight') goSlide((dmCurrentSlide+1) % document.querySelectorAll('.dm-slide').length);
+    if (e.key === 'ArrowLeft') { var n=document.querySelectorAll('.dm-slide').length; goSlide((dmCurrentSlide-1+n)%n); }
   });
+
+  // ═══ WIKIMEDIA IMAGE LOADER — bypasses hotlink blocking via API ═══
+  (function() {
+    var destImages = {
+      'img-ganvie':     'Ganvie1.jpg',
+      'img-pendjari':   'Pendjari_NP_elephant.jpg',
+      'img-ouidah':     'La_porte_du_Non_Retour_-_Ouidah.jpg',
+      'img-abomey':     'Abomey_bas-reliefs.jpg',
+      'img-porto':      'Musee_Honme_Porto_Novo.jpg',
+      'img-natitingou': 'Tata_Somba_1.jpg',
+      'img-pythons':    'Python_sebae.jpg'
+    };
+
+    function loadWikiImage(el, filename) {
+      var url = 'https://en.wikipedia.org/w/api.php?action=query&titles=File:' +
+        encodeURIComponent(filename) +
+        '&prop=imageinfo&iiprop=url&iiurlwidth=800&format=json&origin=*';
+      fetch(url)
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var pages = data.query.pages;
+          var key = Object.keys(pages)[0];
+          var info = pages[key].imageinfo;
+          if (info && info[0]) {
+            var imgUrl = info[0].thumburl || info[0].url;
+            el.style.backgroundImage = "url('" + imgUrl + "')";
+            el.style.backgroundSize = 'cover';
+            el.style.backgroundPosition = 'center';
+          }
+        }).catch(function(){});
+    }
+
+    function applyImages() {
+      Object.keys(destImages).forEach(function(cls) {
+        document.querySelectorAll('.' + cls).forEach(function(el) {
+          loadWikiImage(el, destImages[cls]);
+        });
+      });
+      // Grand-Popo beach — Unsplash works fine in browser
+      document.querySelectorAll('.img-plage').forEach(function(el) {
+        el.style.backgroundImage = "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80')";
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      });
+      // Pythons temple card
+      document.querySelectorAll('.dest-ouidah').forEach(function(el) {
+        loadWikiImage(el, 'Python_sebae.jpg');
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyImages);
+    } else {
+      applyImages();
+    }
+  })();
 
 </script>
 
-<!-- ===== DESTINATION MODAL ===== -->
-<div class="dest-modal-overlay" id="destModalOverlay" onclick="closeDestModalOnOverlay(event)">
-  <div class="dest-modal" id="destModal">
-    <button class="modal-close" onclick="closeDestModal()">✕</button>
-    <div class="modal-hero" id="modalHero">
-      <div class="modal-hero-overlay">
-        <div>
-          <div class="modal-hero-region" id="modalRegion"></div>
-          <div class="modal-hero-title" id="modalTitle"></div>
+
+<!-- ══════════════════════════════════════════
+     DESTINATION MODAL — FULL IMMERSIVE PAGE
+══════════════════════════════════════════ -->
+<div id="destModal" class="dm-overlay" role="dialog" aria-modal="true">
+
+  <!-- Back -->
+  <button class="dm-back" onclick="closeDM()" aria-label="Retour">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Retour
+  </button>
+
+  <!-- Cinematic Hero -->
+  <div class="dm-hero" id="dmHero">
+    <div class="dm-hero-slides" id="dmSlides"></div>
+    <div class="dm-hero-gradient"></div>
+    <div class="dm-hero-content">
+      <div class="dm-badge" id="dmBadge"></div>
+      <div class="dm-title" id="dmTitle"></div>
+      <div class="dm-region" id="dmRegion"></div>
+    </div>
+    <div class="dm-dots" id="dmDots"></div>
+  </div>
+
+  <!-- Body -->
+  <div class="dm-body">
+
+    <!-- Left: Tabs -->
+    <div class="dm-main">
+      <div class="dm-tabs">
+        <button class="dm-tab active" onclick="switchTab('info',this)">📍 Infos</button>
+        <button class="dm-tab" onclick="switchTab('gallery',this)">📸 Photos</button>
+        <button class="dm-tab" onclick="switchTab('reviews',this)">⭐ Avis</button>
+        <button class="dm-tab" onclick="switchTab('tips',this)">💡 Conseils</button>
+        <button class="dm-tab" onclick="switchTab('map',this)">🗺️ Carte</button>
+      </div>
+
+      <!-- Panel: Info -->
+      <div class="dm-panel active" id="panel-info">
+        <p class="dm-description" id="dmDesc"></p>
+        <div class="dm-highlights" id="dmHighlights"></div>
+      </div>
+
+      <!-- Panel: Gallery -->
+      <div class="dm-panel" id="panel-gallery">
+        <div class="dm-gallery" id="dmGallery"></div>
+      </div>
+
+      <!-- Panel: Reviews -->
+      <div class="dm-panel" id="panel-reviews">
+        <div class="dm-rating-big">
+          <div class="dm-rating-num" id="dmRatingNum"></div>
+          <div>
+            <div class="dm-rating-stars" id="dmRatingStars"></div>
+            <div class="dm-rating-count" id="dmRatingCount"></div>
+          </div>
+        </div>
+        <div class="dm-reviews" id="dmReviews"></div>
+      </div>
+
+      <!-- Panel: Tips -->
+      <div class="dm-panel" id="panel-tips">
+        <div class="dm-tips" id="dmTips"></div>
+      </div>
+
+      <!-- Panel: Map -->
+      <div class="dm-panel" id="panel-map">
+        <div class="dm-map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <div id="dmMapText"></div>
+          <a class="dm-map-btn" id="dmMapLink" target="_blank">Ouvrir dans Google Maps →</a>
         </div>
       </div>
     </div>
-    <div class="modal-body">
-      <div class="modal-badge" id="modalBadge"></div>
-      <p class="modal-description" id="modalDescription"></p>
-      <div class="modal-highlights" id="modalHighlights"></div>
-      <div class="modal-infos" id="modalInfos"></div>
-      <div class="modal-actions">
-        <a href="#contact" class="modal-btn-primary" onclick="closeDestModal()">📋 Réserver / Demander un devis</a>
-        <a href="#contact" class="modal-btn-secondary" onclick="closeDestModal()">📞 Nous contacter</a>
+
+    <!-- Right: Sidebar -->
+    <div class="dm-sidebar">
+      <div class="dm-info-card">
+        <h4>Infos pratiques</h4>
+        <div id="dmInfoRows"></div>
+      </div>
+      <div class="dm-info-card">
+        <h4>🌡️ Climat par saison</h4>
+        <div class="dm-weather" id="dmWeather"></div>
+      </div>
+      <div class="dm-cta-group">
+        <a href="#contact" class="dm-cta-primary" onclick="closeDM()">📋 Réserver / Demander un devis</a>
+        <a href="https://wa.me/22901941736 08" class="dm-whatsapp" target="_blank">💬 WhatsApp direct</a>
+        <a href="tel:+22901941736 08" class="dm-cta-secondary">📞 +229 01 94 17 36 08</a>
       </div>
     </div>
+
   </div>
 </div>
 
 </body>
-</html>
